@@ -50,21 +50,21 @@ for filename in os.listdir(jsonFilesDir):
         with open(jsonFilesDir + filename) as json_file:
             jsonData = json.load(json_file)
 
-            fileCount = fileCount + 1
-            print("Parsing file " + (jsonFilesDir + filename))
+        fileCount = fileCount + 1
+        print("Parsing file " + (jsonFilesDir + filename))
 
-            #gets all fields of the json into a variable and inserts into panda Table/dataframe
-            receipt_id = jsonData['receipt_id']
-            transaction_time = jsonData['transaction_time']
-            employee_name = jsonData['employee_name']
+        #gets all fields of the json into a variable and inserts into panda Table/dataframe
+        receipt_id = jsonData['receipt_id']
+        transaction_time = jsonData['transaction_time']
+        employee_name = jsonData['employee_name']
 
 
-            for p in jsonData['products']:
-                qty_sold = p['qty_sold']
-                product_name = p['product_name']
-                product_id = p['product_id']
+        for p in jsonData['products']:
+            qty_sold = p['qty_sold']
+            product_name = p['product_name']
+            product_id = p['product_id']
 
-                dataList.append([receipt_id, transaction_time, employee_name, product_id, qty_sold, product_name])
+            dataList.append([receipt_id, transaction_time, employee_name, product_id, qty_sold, product_name])
 
 # converts all data stored in dataList into a panda table (dataframe) so we can do analysis
 transactionsTbl = pd.DataFrame(dataList, columns = ['receiptid', 'transactiontime', 'employee_name', 'product_id', 'qty_sold', 'product_name'])
