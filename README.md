@@ -1,57 +1,34 @@
-### Data Engineering Exercise
+#Version etc
 
-The objective of this exercise is to create a command line application that, given a directory of customer receipt files, can identify the top N best-selling products among all the receipts.  The solution must be implemented in Python, and it must function on Windows, Mac, and Linux.
+-Python3
+-pandas
 
-**Deliverable requirements:**
+#Arguments
 
-Your solution should contain the following files:
+Lines 13-39
+-Created the arguments that allows user to enter in CLI
 
-* `cli.py` - single python file containing your solution
-* `req.txt` - python requirements file (if non-standard modules were used)
-* `readme.md` - description of your solution, including which python version and modules you used
+#Input Files
 
-You may submit your solution as a github/bitbucket repository, or a zipped folder.
+Lines 43-70
+-Made a list of all json files
+-Iterated through the list
+-Flatten "products" to include "receipt_id", "transaction_time" and "employee_name"
 
-**CLI Structure:**
+-Used pandas to convert list into a table
+(Can see list view and table view by uncommenting out lines 71 and 72)
 
-CLI application should be called as shown below:
+#Sum or Sort
 
-`python cli.py -d "<path_to_directory>" -n <number_of_products> -o "<output_filepath>"`
+Lines 77-79
+-Sums quantity sold by product id
+-Soft by total and limit the number of rows
 
-Arguments:
+#Output Files
 
-* "-d" - String filepath (absolute or relative) to the directory of receipt files
-* "-n" - Integer number of best-selling products to return
-* "-o" - String filepath (absolute or relative) to the output file
+Lines 86-97
+-Outputs the list to JSON format given
+-Append top sellers to the output
 
-Note: arguments must be callable in any order
-
-**Input files:**
-
-The input receipt files contain JSON data for each customer transaction.  All of the files use the same JSON fields, although they may vary in size.  You must only process files ending with a ".json" extension  You do not need to traverse subdirectories within the directory.
-
-There is a compressed sample folder of JSON receipt files in this repository called `data.tar.gz`
-
-**Output:**
-
-This application must output a single text file containing the following fields in JSON format:
-
-* "source_folder": the directory of the recipt files
-* "run_date": the date that the application was run, format "YYYY-MM-DD"
-* "file_count": the number of files processed in the source folder
-* "best_sellers": the list of best-selling products, with the total quantity sold and the rank
-
-Below is an example of the output file structure:
-
-```
-{
-  "source_folder": "/home/eataly/receipt_files",
-  "run_date": "2017-01-06",
-  "file_count": 999,
-  "best_sellers": [
-    {"product_id": "1234-1000", "qty_sold": 100, "rank": 1},
-    {"product_id": "2345-1000", "qty_sold": 90, "rank": 2},
-    {"product_id": "4567-1000", "qty_sold": 85, "rank": 3}
-  ]
-}
-```
+Lines 102-105
+-Outputs JSON to text file
