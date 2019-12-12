@@ -22,20 +22,20 @@ nbrBestSelling = args.n
 outputFileDir = args.o
 
 #does some basic input formatting
-if (jsonFilesDir.endswith('/') == False):
-    jsonFilesDir = jsonFilesDir + "/"
+if not jsonFilesDir.endswith('/'):
+    jsonFilesDir += "/"
 
-if (outputFileDir.endswith('/') == False):
-    outputFileDir = outputFileDir + "/"
+if not outputFileDir.endswith('/'):
+    outputFileDir += "/"
 
 # checks to see that path is valid
-if (os.path.isdir(jsonFilesDir) == False):
-    print("Invalid input path: " + jsonFilesDir)
+if not os.path.isdir(jsonFilesDir):
+    print("Invalid input path:", jsonFilesDir)
     sys.exit()
 
 # checks to see that path is valid
-if (os.path.isdir(outputFileDir) == False):
-    print("Invalid output path: " + outputFileDir)
+if not os.path.isdir(outputFileDir):
+    print("Invalid output path:", outputFileDir)
     sys.exit()
 
 #---------------------------- processes all json files in specified directory ----------------------
