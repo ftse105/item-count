@@ -86,8 +86,8 @@ outputList = itemsSold.values.tolist()
 outputjson = "{\"source_folder\": \"" + jsonFilesDir + "\", \"run_date\": \"" + str(date.today()) + "\", \"file_count\": " + str(fileCount) + ",\"best_sellers\": ["
 
 #append top sellers to the output json
-for i in range(len(outputList)):
-    outputjson = outputjson + "{\"product_id\": \"" + outputList[i][0] + "\", \"qty_sold\": " + str(outputList[i][1]) + ", \"rank\": " + str(i+1) + "},"
+for i, product in enumerate(outputList):
+    outputjson = outputjson + "{\"product_id\": \"" + product[0] + "\", \"qty_sold\": " + str(product[1]) + ", \"rank\": " + str(i+1) + "},"
 
 #removes last comma
 if outputjson.endswith(','):
